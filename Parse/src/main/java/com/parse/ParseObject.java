@@ -690,7 +690,8 @@ public class ParseObject implements Parcelable {
    *          The object's data. It is assumed to be complete, unless the JSON has the
    *          {@link #KEY_SELECTED_KEYS} key.
    * @param defaultClassName
-   *          The className of the object, if none is in the JSON.
+   *          The className of the object,
+   *          is taken if json does not have the field {@link #KEY_CLASS_NAME} key.
    * @param decoder
    *          Delegate for knowing how to decode the values in the JSON.
    */
@@ -700,6 +701,22 @@ public class ParseObject implements Parcelable {
     if (className == null) {
       return null;
     }
+    return fromJSONWithClass(className, json, decoder);
+  }
+
+  /**
+   * Creates a new {@code ParseObject} based on data from the Parse server.
+   * @param className
+   *          The className of the object, must not be empty
+   * @param json
+   *          The object's data. It is assumed to be complete, unless the JSON has the
+   *          {@link #KEY_SELECTED_KEYS} key.
+   * @param decoder
+   *          Delegate for knowing how to decode the values in the JSON.
+   */
+  /* package */ static <T extends ParseObject> T fromJSONWithClass(String className, JSONObject json,
+                                                          ParseDecoder decoder) {
+
     String objectId = json.optString(KEY_OBJECT_ID, null);
     boolean isComplete = !json.has(KEY_SELECTED_KEYS);
     @SuppressWarnings("unchecked")
@@ -3642,6 +3659,7 @@ public class ParseObject implements Parcelable {
    * deadlocks: https://our.intern.facebook.com/intern/tasks/?t=3508472
    */
   /* package */ static void registerParseSubclasses() {
+    registerSubclass(ParseSchema.class);
     registerSubclass(ParseUser.class);
     registerSubclass(ParseRole.class);
     registerSubclass(ParseInstallation.class);

@@ -49,6 +49,7 @@ public class Parse {
       private Context context;
       private String applicationId;
       private String clientKey;
+      private String masterKey;
       private String server;
       private boolean localDataStoreEnabled;
       private OkHttpClient.Builder clientBuilder;
@@ -135,6 +136,11 @@ public class Parse {
         return this;
       }
 
+      public Builder masterKey(String masterKey){
+        this.masterKey = masterKey;
+        return this;
+      }
+
       /**
        * Set the server URL to be used by Parse.
        *
@@ -207,6 +213,7 @@ public class Parse {
     final Context context;
     final String applicationId;
     final String clientKey;
+
     final String server;
     final boolean localDataStoreEnabled;
     final OkHttpClient.Builder clientBuilder;

@@ -128,7 +128,7 @@ import bolts.Task;
       }
       for (int i = 0; i < results.length(); ++i) {
         JSONObject data = results.getJSONObject(i);
-        T object = ParseObject.fromJSON(data, resultClassName, ParseDecoder.get(), state.selectedKeys());
+        T object = fromJson(data, resultClassName, state);
         answer.add(object);
 
         /*
@@ -144,6 +144,10 @@ import bolts.Task;
     }
 
     return answer;
+  }
+
+  /* Package */ <T extends ParseObject> T fromJson(JSONObject data, String className, ParseQuery.State<T> state){
+    return ParseObject.fromJSON(data, className, ParseDecoder.get(), state.selectedKeys());
   }
 
   /* Package */ <T extends ParseObject> ParseRESTQueryCommand getParseRESTQueryCommand(boolean count,

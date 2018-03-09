@@ -8,9 +8,9 @@ import bolts.Task;
  * Created by gal on 3/9/18.
  */
 
-public class ParseSchemaQuery<T extends ParseObject> extends ParseQuery<T> {
+public class ParseSchemaQuery extends ParseQuery<ParseSchema> {
     public ParseSchemaQuery(){
-        super("Schema");
+        super("_Schema");
     }
 
     private static NetworkQueryController queryController;
@@ -24,17 +24,17 @@ public class ParseSchemaQuery<T extends ParseObject> extends ParseQuery<T> {
     }
 
     @Override
-    Task<T> getFirstAsync(State<T> state, ParseUser user, Task<Void> cancellationToken) {
+    Task<ParseSchema> getFirstAsync(State<ParseSchema> state, ParseUser user, Task<Void> cancellationToken) {
         return getQueryController().getFirstAsync(state, user, cancellationToken);
     }
 
     @Override
-    Task<List<T>> findAsync(State<T> state, ParseUser user, Task<Void> cancellationToken) {
+    Task<List<ParseSchema>> findAsync(State<ParseSchema> state, ParseUser user, Task<Void> cancellationToken) {
         return getQueryController().findAsync(state, user, cancellationToken);
     }
 
     @Override
-    Task<Integer> countAsync(State<T> state, ParseUser user, Task<Void> cancellationToken) {
+    Task<Integer> countAsync(State<ParseSchema> state, ParseUser user, Task<Void> cancellationToken) {
         return getQueryController().countAsync(state, user, cancellationToken);
     }
 }
