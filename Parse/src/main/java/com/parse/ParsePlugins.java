@@ -82,6 +82,10 @@ class ParsePlugins {
         return configuration.clientKey;
     }
 
+    String masterKey(){
+        return configuration.masterKey;
+    }
+
     Parse.Configuration configuration() {
         return configuration;
     }
@@ -128,6 +132,11 @@ class ParsePlugins {
                         if (configuration.clientKey != null) {
                             headersBuilder.set(ParseRESTCommand.HEADER_CLIENT_KEY, configuration.clientKey);
                         }
+                        // add master key if specified
+                        if (configuration.masterKey != null){
+                            headersBuilder.set(ParseRESTCommand.HEADER_MASTER_KEY, configuration.masterKey);
+                        }
+
                         request = request.newBuilder()
                                 .headers(headersBuilder.build())
                                 .build();

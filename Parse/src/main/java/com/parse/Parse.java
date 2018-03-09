@@ -42,6 +42,7 @@ public class Parse {
    * Represents an opaque configuration for the {@code Parse} SDK configuration.
    */
   public static final class Configuration {
+
     /**
      * Allows for simple constructing of a {@code Configuration} object.
      */
@@ -213,6 +214,7 @@ public class Parse {
     final Context context;
     final String applicationId;
     final String clientKey;
+    final String masterKey;
 
     final String server;
     final boolean localDataStoreEnabled;
@@ -224,6 +226,7 @@ public class Parse {
       this.context = builder.context;
       this.applicationId = builder.applicationId;
       this.clientKey = builder.clientKey;
+      this.masterKey = builder.masterKey;
       this.server = builder.server;
       this.localDataStoreEnabled = builder.localDataStoreEnabled;
       this.clientBuilder = builder.clientBuilder;
