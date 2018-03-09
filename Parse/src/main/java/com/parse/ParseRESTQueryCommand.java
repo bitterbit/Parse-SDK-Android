@@ -100,7 +100,7 @@ import java.util.Set;
     return parameters;
   }
 
-  private ParseRESTQueryCommand(
+  /* Package */ ParseRESTQueryCommand(
       String httpPath,
       ParseHttpRequest.Method httpMethod,
       Map<String, ?> parameters,

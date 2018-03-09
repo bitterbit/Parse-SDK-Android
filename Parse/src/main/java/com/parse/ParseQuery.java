@@ -1295,7 +1295,7 @@ public class ParseQuery<T extends ParseObject> {
     }, tcs);
   }
 
-  private Task<T> getFirstAsync(State<T> state, ParseUser user, Task<Void> cancellationToken) {
+  /* Package */ Task<T> getFirstAsync(State<T> state, ParseUser user, Task<Void> cancellationToken) {
     return ParseQuery.getQueryController().getFirstAsync(state, user, cancellationToken);
   }
 
@@ -1373,7 +1373,7 @@ public class ParseQuery<T extends ParseObject> {
     }, tcs);
   }
 
-  private Task<Integer> countAsync(State<T> state, ParseUser user, Task<Void> cancellationToken) {
+  /* Package */ Task<Integer> countAsync(State<T> state, ParseUser user, Task<Void> cancellationToken) {
     return ParseQuery.getQueryController().countAsync(state, user, cancellationToken);
   }
 

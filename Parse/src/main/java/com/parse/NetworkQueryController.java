@@ -53,7 +53,7 @@ import bolts.Task;
       Task<Void> ct) {
     final long queryStart = System.nanoTime();
 
-    final ParseRESTCommand command = ParseRESTQueryCommand.findCommand(state, sessionToken);
+    final ParseRESTCommand command = getParseRESTQueryCommand(false, state, sessionToken);
 
     final long querySent = System.nanoTime();
     return command.executeAsync(restClient, ct).onSuccess(new Continuation<JSONObject, List<T>>() {
@@ -91,7 +91,7 @@ import bolts.Task;
       final ParseQuery.State<T> state,
       String sessionToken,
       Task<Void> ct) {
-    final ParseRESTCommand command = ParseRESTQueryCommand.countCommand(state, sessionToken);
+    final ParseRESTCommand command = getParseRESTQueryCommand(true, state, sessionToken);
 
     return command.executeAsync(restClient, ct).onSuccessTask(new Continuation<JSONObject, Task<JSONObject>>() {
       @Override
@@ -144,5 +144,15 @@ import bolts.Task;
     }
 
     return answer;
+  }
+
+  /* Package */ <T extends ParseObject> ParseRESTQueryCommand getParseRESTQueryCommand(boolean count,
+                                                         final ParseQuery.State<T> state,
+                                                         String sessionToken){
+    if (count){
+      return ParseRESTQueryCommand.countCommand(state, sessionToken);
+    } else {
+      return ParseRESTQueryCommand.findCommand(state, sessionToken);
+    }
   }
 }
