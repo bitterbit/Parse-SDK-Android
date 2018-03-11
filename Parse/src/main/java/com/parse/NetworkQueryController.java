@@ -91,7 +91,6 @@ import bolts.Task;
       final ParseQuery.State<T> state,
       String sessionToken,
       Task<Void> ct) {
-
     final ParseRESTCommand command = getParseRESTQueryCommand(true, state, sessionToken);
 
     return command.executeAsync(restClient, ct).onSuccessTask(new Continuation<JSONObject, Task<JSONObject>>() {

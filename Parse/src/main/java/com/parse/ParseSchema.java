@@ -18,7 +18,7 @@ public class ParseSchema extends ParseObject {
 
     private String schemaClassName = "";
 
-    ParseSchema (){
+    protected ParseSchema(){
     }
 
     void setSchemaClassName(String className){
